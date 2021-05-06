@@ -28,17 +28,16 @@ https://github.com/oyeong011/TASK/blob/main/README.md
 * [add](#git-add)
 * [status](#git-status)
 * [commit](#git-commit)
-* git branch
-* git checkout
-* git log
+* [log](#git-log)
+* [reset](#git-reset)
+* [branch](#git-branch)
+* [checkout](#git-checkout)
 * git merge
 * git rebase
 * git clone
 * git pull
 * git push
 * git remote
-* git reset
-* git reset --hard
 * git tag
 
 ### 프로젝트 설명
@@ -128,3 +127,63 @@ $git status : 프로젝트에서 변경된 사항중에 스테이싱영역(타�
 &git add -A : sample.md의 변경점이 스테이싱영역에 없는 것을 보고 스테이싱영역에 집어넣기
 $git commit -m "Second record" : 스테이싱영역을 커밋을 통해서 변경점을 저장소에 넣기, 이름은 Second record라고 표시 
 ```
+이과정을 2번정도 반복해서 프로젝트의 3분의 2 분량을 해낸 상태다. * 커밋을 할때마다 Second, Third, Fourth record라고 작성해서 커밋을 분류함
+
+![image](https://user-images.githubusercontent.com/53222742/117363511-a39c0b80-aef7-11eb-9fc3-29dbdd52166a.png)
+
+* ### git log
+
+1. 커밋을 3번정도 수행하고 프로젝트가 3분의 2정도 해결된 상태
+2. 자기가 몇번 커밋을 했는지 커밋 히스토리를 알고자한다. 즉 땅에 묻은 캡슐이 몇개고 어디에 있는지 확인하고자한다.
+3. 다음과 같은 명령어를 작성한다.
+```
+$git log
+```
+4. 이 명령어는 저장소의 히스토리를 보고자 할때 히스토리를 조회하는 명령어이다.
+
+![image](https://user-images.githubusercontent.com/53222742/117365092-c16a7000-aef9-11eb-986f-a0e7295c5b92.png)
+
+5. 필자가 생각하기에 log에서 자주쓰이는 옵션은 다음과 같다.
+```
+$git log -2 : 최근 두 개의 결과만 보여주는 옵션
+$git log -p :  각 커밋의 diff(다른점) 결과를 보여준다
+```
+
+* ### git reset
+
+1. 프로젝트를 3번정도 커밋했으나 문서의 가독성이 이상해보임
+2. 문서를 2번째 커밋으로 되돌리고싶음
+3. 다음과 같은 명령어를 입력한다.
+```
+$git log : 로그를 통해 이동할 커밋의 주소를 확인
+$git reset 1e3397 --hard : 알아낸 주소를 바탕으로 reset을 함
+```
+4. 이 명령어는 코드를 잘못 작성했을때 되돌리고 싶을 때 쓰는 명령어이다.
+5. 필자가 생각하는 자주쓰이는 명령어는 다음과 같다.
+```
+$git reset 주소 --hard : 돌아가려는 이력이후의 모든 내용을 지워 버린다. 영화로 비유를 들면 표를 예매하고, 팝콘과 사이다를 구매했던 모든 것들이 지워지고 모든것이 초기화 되는것이다.
+```
+![image](https://user-images.githubusercontent.com/53222742/117371134-596c5780-af02-11eb-9aef-dd21b367c53e.png)
+
+* ### git branch
+
+1. 2번째 커밋으로 돌아가서 다시 수정해야하는 상태
+2. 수정을 해야하는데 수정전에 새로운 아이디어가 생각이 나서 복제파일을 만들어서 실험적인 내용을 다루는 필드가 필요함
+3. 다음과 같은 명령어를 입력
+```
+$git branch my-idea
+```
+4. 이 명령어는 여러 개발자들이 동시에 다양한 작업을 할 수 있게 브런치(복사된 필드)를 만들어 주는 기능이 있다.
+
+* ### git checkout
+
+1. 브랜치를 생성한 상태고 지금은 마스터 브랜치에 위치해있는 상태
+2. 새로 만든 my-idea 브랜치에 옮겨서 작업하고자함
+3. 다음과 같은 명령어를 입력한다.
+```
+$git checkout my-idea : 해당 브렌치로 이동하는 명령어
+```
+4. 이 명령어는 앞에서 새로 만든 'my-idea'라는 이름의 브랜치를 사용하여 어떤 작업을 수행하려면, 이 브랜치를 사용 하겠다고 명시적으로 지정해야함. 즉 체크아웃(checkout)이란, 사용할 브랜치를 지정하는 것을 의미합니다.
+
+* branch&checkout
+![image](https://user-images.githubusercontent.com/53222742/117373676-a9e5b400-af06-11eb-858b-e043cd29ed91.png)
