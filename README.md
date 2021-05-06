@@ -22,14 +22,14 @@
  이 **파일의 목적**은 **GIT**에 대한 **명령어** 사용법을 알려주는 문서입니다. **가상의 프로젝트**를 수행하면서 쓰이게 되는 git 명령어에 대해서 알아볼것입니다.
 
  알아볼 명령어는 다음과 같습니다
-* [config](#git-config)
 * [init](#git-init)
+* [config](#git-config)
 * [add](#git-add)
-* git status
+* [status](#git-status)
+* [commit](#git-commit)
 * git branch
 * git checkout
 * git clone
-* git commit
 * git log
 * git merge
 * git pull
@@ -52,21 +52,27 @@
 1. 지금 상태는 윈도우에서 빈 폴더를 생성하고 vscode를 이용해서 빈폴더(이름:computer2)를 불러왔습니다. 그리고 프로젝트를 하기 위해 빈 md파일 하나만 만들어진 상태입니다.
 2. 여기서 깃 저장소를 만들어서 깃을 사용해야합니다.
 3. 그러기 위해서 ***git init***이라는 명령어를 이용해서 저장소를 만들것입니다.
+```
+$git init
+```
 4. 이 명령은 **.git** 이라는 하위 디렉토리를 만듭니다. 즉 프로젝트를 위해 만든 빈폴더(computer2)가 GIT의 관리하에 들어갔다는 말입니다. 그러면 computer2안에 숨겨진 깃파일이 생성되는데 이 안에 우리가 그때그때 코딩을 했던 순간에 있었던 파일들을 저장할 공간이 생긴것입니다. 윈도우에 생성된 파일 **.git** 디렉토리에는 저장소에 필요한 뼈대 파일(Skeleton)이 들어 있습니다. 하지만 이 명령만으로는 아직 프로젝트의 어떤 파일도 관리하지 않습니다.
 ![image](https://user-images.githubusercontent.com/53222742/117339147-5fe6d900-aeda-11eb-8508-411c971bb08a.png)
 
+![image](https://user-images.githubusercontent.com/53222742/117341480-1fd52580-aedd-11eb-8a29-8f40ff60905a.png)
+
 * ### git config
 1. 빈파일에서 init을 입력하여 뼈대 파일이 생성된 상태입니다.
-2. 깃을 제대로 사용하려면 초기 설정을 해줘야합니다. 그중에서 사용자 정보를 등록해줘야합니다. Git은 커밋할 때마다 이 정보를 사용하기 때문에 이 명령어는 필요합니다. 그리고 이것이 입력이 잘되었는지를 확인하고 싶습니다.
-3. 이를 위해서 git config라는 명령어에서 
-'''
-git config --global user.name "이름"
-git config --global user.email 이메일주소
-git config --list
-'''
-5. 따라서 이 명령어는 사용자 정보를 등록하고 
+2. 깃을 제대로 사용하려면 초기 설정을 해줘야한다.그중에서 사용자 정보를 등록해줘하고 이것이 입력이 잘되었는지를 확인하고자 한다.
+3. 이를 위해서 git config라는 명령어에서 다음과 같은 명령어를 입력한다.
+```
+$git config --global user.name "이름" : 이름등록
+$git config --global user.email 이메일주소 : 이메일 주소 등록
+$git config --list : 설정한 모든 것을 리스트로 확인
+```
+4. 따라서 이 명령어는 사용자 정보를 등록하고 등록이 잘되었는지 확인하는 것으로 **설정 내용을 확인하고 변경할 수 있다.**
+5. 이 명령어의 자주쓰이는 옵션으로는 **--global**이 있다. 이것은 특정 사용자(즉 현재 사용자)에게만 적용되는 설정이다. **git config --global** 옵션으로 이 파일을 읽고 쓸 수 있다. 특정 사용자의 모든 저장소 설정에 적용된다. **하지만 초기 설정을 하는 명령어라 거의 한번만 필수적으로 입력하고 다시 쓰지 않는 명령어라고 생각한다.** 
 
-![image](https://user-images.githubusercontent.com/53222742/117341480-1fd52580-aedd-11eb-8a29-8f40ff60905a.png)
+![image](https://user-images.githubusercontent.com/53222742/117351585-ddb1e100-aee8-11eb-9b3d-a6ada350b1c5.png)
 
 * ### git status
 
@@ -79,4 +85,18 @@ git config --list
 
 * ### git add
 
-1. 지금 현 상태는 위의 사진 git status라는 
+1. 지금 현 상태는 위의 사진 git status라는 명령어를 입력해서 지금 프로젝트의 상태를 확인했고 sample.md가 Untracted 상태 즉 깃이 이 sample.md파일을 보고있지 않은 상태를 뜻한다.또 빨간색으로 표시된 sample.md는 파일이 만들어졌다는 사실을 지칭한다.
+2. 지금까지 작업했던 파일들의 변경점을 저장하고 싶습니다.
+3. 그래서 다음과 같은 명령어를 입력했습니다.
+```
+git add -A
+```
+4. 따라서 git add 명령어는 다음 변경을 기록할 때까지 변경분을 모아놓기 위해서 사용한다. 비유하자면 타임캡슐을 만드는 과정이다. 필자의 생각으로 자주 쓰이는 옵션은 다음과 같다.
+```
+$ git add <파일/디렉토리 경로> : 작업 디렉토리의 변경 내용의 일부만 넘기고 싶을 때는 수정한 파일이나 디렉토리의 경로를 인자로 넘긴다.
+$ git add . : 현재 디렉토리의 모든 변경 내용을 스테이징 영역으로 넘기고 싶을 때는, .을 인자로 넘긴다.
+$ git add -A : 작업 디렉토리 내의 모든 변경 내용을 몽땅 넘기고 싶을 때 사용
+$ git add -p : 각 변경 사항을 터미널에서 직접 눈으로 하나씩 확인하면서 넘기거나 또는 제외할 수가 있다.
+```
+사진을 보면 변경된 점들이 타임캡슐에 들어간 것을 확인할 수 있다.
+![image](https://user-images.githubusercontent.com/53222742/117355502-9e39c380-aeed-11eb-8b97-9e9e5e4cd369.png)
