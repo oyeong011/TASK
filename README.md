@@ -187,3 +187,9 @@ $git checkout my-idea : 해당 브렌치로 이동하는 명령어
 
 * branch&checkout
 ![image](https://user-images.githubusercontent.com/53222742/117373676-a9e5b400-af06-11eb-858b-e043cd29ed91.png)
+
+* ### git merge
+
+1. 새로운 브런치 my-idea에서 새로운 아이디어를 이용해 수정함
+2. 기존에 있던 마스터 브런치와 병합하고자함
+3. 
