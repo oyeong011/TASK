@@ -34,10 +34,10 @@ https://github.com/oyeong011/TASK/blob/main/README.md
 * [checkout](#git-checkout)
 * [merge](#git-merge)
 * [rebase](#git-rebase)
-* git remote
-* git clone
+* [remote](#git-remote)
+* [push](#git-push)
 * git pull
-* git push
+* git clone
 * git tag
 
 ### 프로젝트 설명
