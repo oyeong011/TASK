@@ -250,7 +250,7 @@ $git rebase my-another-idea : 브랜치의 위치를 my-another-idea로 이동
 2. 이를 다른 사람들과 공유하고 보완할점을 조언받고자 깃허브에 올리고자 저장소를 마련해야함
 3. 다음과 같은 명령어를 이용해 저장소를 연결
 ```
-
+$git remote add origin https://github.com/oyeong011/TASK.git
 ```
 * ### git push
 
