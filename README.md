@@ -32,8 +32,8 @@ https://github.com/oyeong011/TASK/blob/main/README.md
 * [reset](#git-reset)
 * [branch](#git-branch)
 * [checkout](#git-checkout)
-* git merge
-* git rebase
+* [merge](#git-merge)
+* [rebase](#git-rebase)
 * git clone
 * git pull
 * git push
@@ -156,7 +156,7 @@ $git log -p :  각 커밋의 diff(다른점) 결과를 보여준다
 3. 다음과 같은 명령어를 입력한다.
 ```
 $git log : 로그를 통해 이동할 커밋의 주소를 확인
-$git reset 1e3397 --hard : 알아낸 주소를 바탕으로 reset을 함
+$git reset 1e3397 --hard : 알아낸 주소를 바탕으로 reset을 함 : git reset [되돌아가고자하는커밋주소]  [옵션]
 ```
 4. 이 명령어는 코드를 잘못 작성했을때 되돌리고 싶을 때 쓰는 명령어이다.
 5. 필자가 생각하는 자주쓰이는 명령어는 다음과 같다.
@@ -171,10 +171,13 @@ $git reset 주소 --hard : 돌아가려는 이력이후의 모든 내용을 지�
 2. 수정을 해야하는데 수정전에 새로운 아이디어가 생각이 나서 복제파일을 만들어서 실험적인 내용을 다루는 필드가 필요함
 3. 다음과 같은 명령어를 입력
 ```
-$git branch my-idea
+$git branch my-idea : git branch 브랜치명
 ```
 4. 이 명령어는 여러 개발자들이 동시에 다양한 작업을 할 수 있게 브런치(복사된 필드)를 만들어 주는 기능이 있다.
-
+5. 필자가 생각하기에 이 명령어에서 자주 쓰이는 옵션은 다음과 같다
+```
+$git branch -D (브랜치명) : 생성한 브랜치를 지워주는 역할을 한다.
+```
 * ### git checkout
 
 1. 브랜치를 생성한 상태고 지금은 마스터 브랜치에 위치해있는 상태
@@ -183,13 +186,62 @@ $git branch my-idea
 ```
 $git checkout my-idea : 해당 브렌치로 이동하는 명령어
 ```
+
 4. 이 명령어는 앞에서 새로 만든 'my-idea'라는 이름의 브랜치를 사용하여 어떤 작업을 수행하려면, 이 브랜치를 사용 하겠다고 명시적으로 지정해야함. 즉 체크아웃(checkout)이란, 사용할 브랜치를 지정하는 것을 의미합니다.
 
 * branch&checkout
 ![image](https://user-images.githubusercontent.com/53222742/117373676-a9e5b400-af06-11eb-858b-e043cd29ed91.png)
 
+5. 필자가 생각하는 이 명령어에서 자주쓰이는 옵션은 다음과 같다.
+
+```
+$git checkout -b 브랜치명 : 새로운 브랜치를 만들고 그 브랜치로 이동할 수 있다.
+```
+
 * ### git merge
 
-1. 새로운 브런치 my-idea에서 새로운 아이디어를 이용해 수정함
+1. 새로운 브런치 my-idea에서 새로운 아이디어를 이용해 커밋하여 추가함
 2. 기존에 있던 마스터 브런치와 병합하고자함
-3. 
+3. 다음과 같은 명령어를 입력한다.
+
+```
+$git checkout master : 처음에 있던 최초 브랜치로 이동 첫번째 브랜치의 이름은 자동으로 master라고 설정된다.
+&git merge my-idea : git merge 병합하고자하는 브랜치 : 두 개의 부모(parent)를 가리키는 특별한 커밋을 만들어낸다.
+```
+merge를 한번하면 이런상태로 남는다. 즉 master브랜치는 두 부모가 있는 커밋을 가르키지만 my-idea는 브랜치가 합쳐지지 않은 것이다. 따라서 my-idea도 병합하려면 위의 과정에서 master와 my-idea를 바꿔주면된다.
+
+![image](https://user-images.githubusercontent.com/53222742/117405795-26988280-af47-11eb-8941-433db477d17a.png)
+
+
+```
+$git checkout my-idea : 처음에 있던 최초 브랜치로 이동 첫번째 브랜치의 이름은 자동으로 master라고 설정된다.
+&git merge master : git merge 병합하고자하는 브랜치 : 두 개의 부모(parent)를 가리키는 특별한 커밋을 만들어낸다.
+```
+
+그러면 이런 상태가 된다.
+
+![image](https://user-images.githubusercontent.com/53222742/117406118-91e25480-af47-11eb-8cf3-a487ff59a363.png)
+
+![image](https://user-images.githubusercontent.com/53222742/117406299-d79f1d00-af47-11eb-9bf4-0e6f0354cd29.png)
+
+4. 따라서 merge라는 명령어는 서로 다른 두 브랜치를 합칠 때 사용되는 명령어 즉 한 부모의 모든 작업내역과 나머지 부모의 모든 작업, 그리고 그 두 부모의 모든 부모들의 작업내역을 포함한다.
+
+* ### git rebase
+
+1. 프로젝트에 대한 새로운 아이디어가 떠올라서 새로운 브랜치인 my-another-idea를 생성해서 새로운 내용과 사진파일을 추가한 상태
+2. 이를 또한 병합하고자합니다. 그러나 커밋의 수와 브랜치의 수가 많아져서 이를 깔끔하게 병합하고자한다.
+3. 다음과 같은 명령어를 입력한다.
+```
+$git checkout my-another-idea : 브랜치 위치를 my-another-idea로 이동
+$git rebase master : 본인의 브랜치 커밋들을 복사해서 master 밑에 위치와 함께 붙여넣기
+$git checkout master : 브랜치 위치를 master으로 이동 
+$git rebase my-another-idea : 브랜치의 위치를 my-another-idea로 이동
+```
+결과는 그림과 같다
+![image](https://user-images.githubusercontent.com/53222742/117415649-8137db80-af53-11eb-87ed-c990b2852d02.png)
+
+4. 따라서 이 명령어는 브랜치를 병합할때 사용하고 좀 더 깨끗한 히스토리를 만들때 사용한다.
+
+![image](https://user-images.githubusercontent.com/53222742/117417445-5058a600-af55-11eb-86e4-146817350381.png)
+
+* ### 
