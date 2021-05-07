@@ -4,7 +4,7 @@ https://github.com/oyeong011/TASK/blob/main/README.md
 ## 1) GIT과 GITHUB란?
 * **GIT**
 
-**GIT**은 우리가 개발 프로젝트를 진행할때 저장해주는 기능을 가진 시스템으로 이른바 버전관리를 해주는 것을 뜻합니다.
+**GIT**은 소프트웨어 개발에서 소스 코드를 효과적으로 관리할 수 있도록 하는 무료, 공개 소프트웨어이다. 이것의 기능은 프로젝트 폴더 내에서 작업을 기록하고, 버전 관리를 통해 체계적인 개발이 가능하도록 한다.
 
 * **버전관리**
 
@@ -248,11 +248,35 @@ $git rebase my-another-idea : 브랜치의 위치를 my-another-idea로 이동
 
 1. 프로젝트가 어느 정도 완성이 되어감
 2. 이를 다른 사람들과 공유하고 보완할점을 조언받고자 깃허브에 올리고자 저장소를 마련해야함
-3. 다음과 같은 명령어를 이용해 저장소를 연결
+3-1. 깃허브에 가입하고 레퍼지토리를 생성함
+3-2. 다음과 같은 명령어를 이용해 저장소를 연결
 ```
-$git remote add origin https://github.com/oyeong011/TASK.git
+$git remote add origin https://github.com/oyeong011/TASK.git : git remote add origin (깃허브주소)
 ```
+4. 위에서 알아보았던 git init과 같은 역할을 깃허브 버전으로 구현한 것이다. 즉 깃허브에서 생성한 레포지토리를 vscode에서 생성한 파일과 연결시켜주는 것이다.
+
+![image](https://user-images.githubusercontent.com/53222742/117435626-05488e00-af69-11eb-900a-de1b26bd1294.png)
+
+5. 필자가 생각하는 자주 쓰이는 옵션은 다음과 같다.
+```
+$git remote : 현재 연결된 레포지토리 이름을 확인할수있다
+$git remote add (리모트이름) (경로) : 새 리모트를 추가합니다. (경로)영역에는 URL이나 파일경로를 넣을수 있음
+$git remote -v : 등록된 저장소 이름과 URL을 표시함
+$git remote show (리모트이름) : 모든 리모트 경로의 branch와 정보를 표시
+$git remote rm (리모트이름) : 리모트 경로를 제거
+```
+
 * ### git push
+
+1. 프로젝트를 깃허브 레포지토리에 연결한 상태
+2. 필자가 만든 프로젝트를 레포지토리에 올리고자함
+3. 다음과 같은 코드를 사용한다.
+```
+$git push otigin master
+```
+
+![image](https://user-images.githubusercontent.com/53222742/117436677-34abca80-af6a-11eb-9dd1-9f183f3f93ee.png)
+
 
 * ### git clone
 
