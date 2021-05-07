@@ -34,10 +34,10 @@ https://github.com/oyeong011/TASK/blob/main/README.md
 * [checkout](#git-checkout)
 * [merge](#git-merge)
 * [rebase](#git-rebase)
+* git remote
 * git clone
 * git pull
 * git push
-* git remote
 * git tag
 
 ### 프로젝트 설명
@@ -244,4 +244,10 @@ $git rebase my-another-idea : 브랜치의 위치를 my-another-idea로 이동
 
 ![image](https://user-images.githubusercontent.com/53222742/117417445-5058a600-af55-11eb-86e4-146817350381.png)
 
-* ### 
+* ### git remote
+
+* ### git push
+
+* ### git clone
+
+* git pull
